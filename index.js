@@ -3,7 +3,15 @@ import mysql from 'mysql'
 import cors from 'cors'
 
 const app = express();
-app.use(cors());
+
+const allowedOrigins = [
+    "https://console.clever-cloud.com/",
+    "http://localhost:3000",
+    "https://crudoperationtask.netlify.app"
+]
+app.use(cors({
+    origin:allowedOrigins
+}));
 
 app.use(express.json());
 
@@ -14,10 +22,12 @@ const db = mysql.createConnection({
     database:"employee_records"
 });
 
+
+
 app.get("/api/users/all",(req,res)=>{
     const sql = "SELECT * FROM user ";
     db.query(sql,(err,result)=>{
-        if(err) return res.json({Message:"Something went wrong!"});
+        if(err) return res.json({Message:"Something went wrong!",err});
         return res.json(result);
     })
 });
