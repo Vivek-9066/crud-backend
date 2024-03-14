@@ -1,25 +1,32 @@
 import express from 'express'
 import mysql from 'mysql'
 import cors from 'cors'
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 
-const allowedOrigins = [
-    "https://console.clever-cloud.com/",
-    "http://localhost:3000",
-    "https://crudoperationtask.netlify.app"
-]
-app.use(cors({
-    origin:allowedOrigins
-}));
+// const allowedOrigins = [
+//     "https://console.clever-cloud.com/",
+//     "http://localhost:3000",
+//     "https://crudoperationtask.netlify.app"
+// ]
+app.use(cors());
 
 app.use(express.json());
 
+// const db = mysql.createConnection({
+//     host:"localhost",
+//     user:"root",
+//     password:"",
+//     database:"employee_records"
+// });
+
 const db = mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"",
-    database:"employee_records"
+    host:"bpfzvj4qqf9cjqmlmnpl-mysql.services.clever-cloud.com",
+    user:"utzdikukpxpigakl",
+    password:"utzdikukpxpigakl",
+    database:"bpfzvj4qqf9cjqmlmnpl"
 });
 
 
