@@ -4,29 +4,22 @@ import cors from 'cors'
 
 const app = express();
 
-// const allowedOrigins = [
-//     "https://console.clever-cloud.com/",
-//     "http://localhost:3000",
-//     "https://crudoperationtask.netlify.app"
-// ]
-app.use(cors());
+const allowedOrigins = [
+    "http://localhost:3000",
+    "https://crudoperationtask.netlify.app"
+]
+app.use(cors({
+    origin:allowedOrigins
+}));
 
 app.use(express.json());
 
-// const db = mysql.createConnection({
-//     host:"localhost",
-//     user:"root",
-//     password:"",
-//     database:"employee_records"
-// });
-
 const db = mysql.createConnection({
-    host:"bpfzvj4qqf9cjqmlmnpl-mysql.services.clever-cloud.com",
-    user:"utzdikukpxpigakl",
-    password:"utzdikukpxpigakl",
-    database:"bpfzvj4qqf9cjqmlmnpl"
+    host:"localhost",
+    user:"root",
+    password:"",
+    database:"employee_records"
 });
-
 
 
 app.get("/api/users/all",(req,res)=>{
